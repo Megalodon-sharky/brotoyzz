@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     ports:
       # host:container — change host port if 80 is taken
-      - "8080:80"
+      - "8085:8085"
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/healthz"]
       interval: 30s
