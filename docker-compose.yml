@@ -5,8 +5,8 @@ services:
     container_name: brotoyzz-landing
     restart: unless-stopped
     ports:
-      # host:container — change host port if 80 is taken
-      - "8085:8085"
+      # host:container — browse http://localhost:8085  (change the LEFT number to use a different host port)
+      - "8085:80"
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/healthz"]
       interval: 30s
