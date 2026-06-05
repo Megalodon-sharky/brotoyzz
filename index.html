@@ -1,0 +1,2116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>BRO TOYZz · India's Plush Toy Vending Experience</title>
+  <meta name="description"
+    content="BRO TOYZz by Salahar Sanman PVT LTD. BIS-certified plush toys for India's first toy vending machine network. Featuring the Panda Wrist Hugger and a growing line of premium kid-safe plushies. Made in Bharat." />
+  <meta property="og:title" content="BRO TOYZz · Plush Toy Vending, Made in Bharat" />
+  <meta property="og:description"
+    content="BIS-certified plush toys served from vending machines at QSRs, food courts, gyms and malls across India. Hero product: Panda Wrist Toy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/vending-dominos.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --c-bg: #000;
+      --c-surface: rgba(255, 255, 255, 0.04);
+      --c-surface-strong: rgba(255, 255, 255, 0.06);
+      --c-border: rgba(255, 255, 255, 0.10);
+      --c-border-strong: rgba(255, 255, 255, 0.18);
+      --c-text: #ffffff;
+      --c-muted: rgba(255, 255, 255, 0.62);
+      --c-faint: rgba(255, 255, 255, 0.38);
+      --c-red: #ef4444;
+      --c-red-soft: #f87171;
+      --c-red-deep: #b91c1c;
+      --c-yellow: #facc15;
+      --c-yellow-soft: #fde047;
+
+      --r-sm: 12px;
+      --r-md: 16px;
+      --r-lg: 24px;
+      --r-xl: 32px;
+      --r-full: 9999px;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+
+      --maxw: 1200px;
+
+      --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+      --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+      --shadow-glass:
+        rgba(0, 0, 0, 0.4) 0px 24px 48px -12px,
+        rgba(255, 255, 255, 0.06) 0px 1px 0 0 inset,
+        rgba(255, 255, 255, 0.04) 0 0 0 1px;
+      --shadow-card:
+        rgba(0, 0, 0, 0.5) 0 12px 32px -8px,
+        rgba(255, 255, 255, 0.04) 0 1px 0 0 inset;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--c-bg);
+      color: var(--c-text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    ::selection {
+      background: rgba(239, 68, 68, 0.32);
+      color: #fff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* Background dot-matrix layer (per Crimson-Orbit-Hero spec) */
+    .bg-stage {
+      position: fixed;
+      inset: 0;
+      z-index: -30;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .bg-stage canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .bg-stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(80% 60% at 50% 0%, rgba(239, 68, 68, 0.22), transparent 62%),
+        radial-gradient(60% 50% at 50% 100%, rgba(250, 204, 21, 0.08), transparent 60%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    /* Layout primitives */
+    .container {
+      width: 100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 var(--space-8);
+      }
+    }
+
+    .section {
+      padding: var(--space-10) 0;
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: var(--space-12) 0;
+      }
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 6px 12px;
+      border-radius: var(--r-full);
+      background: rgba(239, 68, 68, 0.10);
+      border: 1px solid rgba(239, 68, 68, 0.28);
+      color: var(--c-red-soft);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .section-tag .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--c-red);
+      box-shadow: 0 0 12px var(--c-red);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      font-size: clamp(32px, 5vw, 56px);
+      margin: var(--space-4) 0 var(--space-4);
+    }
+
+    .section-lede {
+      color: var(--c-muted);
+      font-size: clamp(16px, 1.4vw, 18px);
+      max-width: 62ch;
+    }
+
+    /* Glass surface (gradient border shell per design.md) */
+    .glass {
+      position: relative;
+      border-radius: var(--r-xl);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.02)),
+        linear-gradient(135deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0.01) 30%,
+          rgba(239, 68, 68, 0.05) 100%);
+      padding: 1px;
+      box-shadow: var(--shadow-glass);
+    }
+
+    .glass-inner {
+      border-radius: calc(var(--r-xl) - 1px);
+      background: rgba(8, 8, 8, 0.62);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+      backdrop-filter: blur(24px) saturate(140%);
+      padding: var(--space-8);
+    }
+
+    @media (min-width: 768px) {
+      .glass-inner {
+        padding: var(--space-10);
+      }
+    }
+
+    /* Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      background: rgba(0, 0, 0, 0.55);
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-3) 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-sm);
+      background: #0a0a0a;
+      padding: 4px;
+      border: 1px solid var(--c-border);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-name span:first-child {
+      color: var(--c-red);
+    }
+
+    .brand-name span:last-child {
+      color: var(--c-yellow);
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--c-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-menu {
+      display: none;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    @media (min-width: 860px) {
+      .nav-menu {
+        display: flex;
+      }
+    }
+
+    .nav-menu a {
+      color: var(--c-muted);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 150ms ease;
+    }
+
+    .nav-menu a:hover {
+      color: var(--c-text);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 12px 20px;
+      border-radius: var(--r-full);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #fff 0%, #e7e7e7 100%);
+      color: #0a0a0a;
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow:
+        rgba(255, 255, 255, 0.5) 0 1px 0 0 inset,
+        rgba(0, 0, 0, 0.4) 0 4px 16px -4px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: rgba(255, 255, 255, 0.6) 0 1px 0 0 inset, rgba(239, 68, 68, 0.4) 0 8px 24px -6px;
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--c-text);
+      border-color: var(--c-border-strong);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.32);
+    }
+
+    .btn-link {
+      padding: 0;
+      background: transparent;
+      color: var(--c-text);
+      border: 0;
+      border-radius: 0;
+    }
+
+    .btn-link::after {
+      content: "\2192";
+      transition: transform 200ms ease;
+    }
+
+    .btn-link:hover::after {
+      transform: translateX(4px);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding-top: var(--space-6);
+      padding-bottom: var(--space-10);
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+      align-items: stretch;
+      width: 100%;
+    }
+
+    @media (min-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: var(--space-12);
+      }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      gap: var(--space-2);
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: var(--r-full);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--c-border);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+
+    .hero-eyebrow .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #facc15;
+      box-shadow: 0 0 12px #facc15;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(40px, 7.5vw, 76px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin: var(--space-5) 0 var(--space-5);
+    }
+
+    .hero-title .accent-red {
+      color: var(--c-red-soft);
+    }
+
+    .hero-title .accent-yellow {
+      color: var(--c-yellow);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 500;
+      background: linear-gradient(135deg, #f87171 0%, #facc15 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      color: var(--c-muted);
+      font-size: clamp(16px, 1.6vw, 19px);
+      max-width: 60ch;
+      line-height: 1.55;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-8);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+      max-width: 520px;
+    }
+
+    .hero-meta-item .num {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-meta-item .lbl {
+      font-size: 12px;
+      color: var(--c-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* Hero panda card */
+    .hero-panda {
+      position: relative;
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-panda .glass-inner {
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-panda::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background: radial-gradient(closest-side, rgba(239, 68, 68, 0.32), transparent 70%);
+      filter: blur(40px);
+      z-index: -1;
+      animation: breathe 6s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      50% {
+        transform: scale(1.08);
+        opacity: 1;
+      }
+    }
+
+    .hero-panda-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background:
+        radial-gradient(72% 72% at 50% 42%, rgba(239, 68, 68, 0.24), transparent 72%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-panda-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.7));
+      animation: float 5s ease-in-out infinite;
+      transform-origin: top center;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: scale(1.1) translateY(12px);
+      }
+
+      50% {
+        transform: scale(1.1) translateY(24px);
+      }
+    }
+
+    .hero-panda-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-md);
+    }
+
+    .hero-panda-label .name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .hero-panda-label .price {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 22px;
+      color: var(--c-yellow);
+    }
+
+    .hero-panda-label .lbl-sub {
+      font-size: 11px;
+      color: var(--c-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* corner crosshairs */
+    .ch {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-color: rgba(239, 68, 68, 0.5);
+      pointer-events: none;
+    }
+
+    .ch.tl {
+      top: 12px;
+      left: 12px;
+      border-top: 1px solid;
+      border-left: 1px solid;
+    }
+
+    .ch.tr {
+      top: 12px;
+      right: 12px;
+      border-top: 1px solid;
+      border-right: 1px solid;
+    }
+
+    .ch.bl {
+      bottom: 12px;
+      left: 12px;
+      border-bottom: 1px solid;
+      border-left: 1px solid;
+    }
+
+    .ch.br {
+      bottom: 12px;
+      right: 12px;
+      border-bottom: 1px solid;
+      border-right: 1px solid;
+    }
+
+    /* Marquee strip */
+    .strip {
+      border-top: 1px solid var(--c-border);
+      border-bottom: 1px solid var(--c-border);
+      padding: var(--space-5) 0;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .strip-track {
+      display: flex;
+      gap: var(--space-12);
+      animation: marquee 32s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+
+    @keyframes marquee {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .strip-item {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      color: var(--c-muted);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .strip-item::before {
+      content: "\2605";
+      color: var(--c-yellow);
+      font-size: 12px;
+    }
+
+    /* Product showcase */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      align-items: stretch;
+    }
+
+    .product-media {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      height: 100%;
+    }
+
+    @media (min-width: 980px) {
+      .product-grid {
+        grid-template-columns: 1.05fr 1fr;
+        gap: var(--space-12);
+      }
+    }
+
+    .product-image {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 300px;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      background:
+        radial-gradient(80% 60% at 50% 20%, rgba(239, 68, 68, 0.16), transparent 70%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.4));
+      border: 1px solid var(--c-border);
+    }
+
+    .product-image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: drop-shadow(0 32px 64px rgba(0, 0, 0, 0.7));
+      transform: scale(0.9) translateY(12px);
+      transform-origin: top center;
+    }
+
+    .product-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+      pointer-events: none;
+    }
+
+    .product-image .price-tag {
+      position: absolute;
+      top: var(--space-5);
+      left: var(--space-5);
+      z-index: 2;
+      padding: var(--space-3) var(--space-4);
+      background: rgba(0, 0, 0, 0.7);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--c-border-strong);
+      border-radius: var(--r-md);
+      font-family: var(--font-display);
+    }
+
+    .product-image .price-tag .label {
+      font-size: 11px;
+      color: var(--c-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .product-image .price-tag .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--c-yellow);
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .product-image .badge {
+      position: absolute;
+      top: var(--space-5);
+      right: var(--space-5);
+      z-index: 2;
+      padding: 6px 12px;
+      background: var(--c-red);
+      border-radius: var(--r-full);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .product-media .gallery {
+      display: flex;
+      gap: var(--space-3);
+      flex: 0 0 auto;
+    }
+
+    .product-media .thumb {
+      flex: 1;
+      height: 210px;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid var(--c-border);
+      background: rgba(0, 0, 0, 0.45);
+      cursor: zoom-in;
+    }
+
+    .product-media .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 8px;
+    }
+
+    .product-detail h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin: var(--space-4) 0 var(--space-4);
+    }
+
+    .product-detail .desc {
+      color: var(--c-muted);
+      font-size: 17px;
+      margin-bottom: var(--space-6);
+    }
+
+    .specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--c-border);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin: var(--space-6) 0;
+    }
+
+    .spec {
+      background: rgba(8, 8, 8, 0.6);
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .spec .k {
+      font-size: 11px;
+      color: var(--c-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .spec .v {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 17px;
+      margin-top: 2px;
+      color: var(--c-text);
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--r-full);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--c-border);
+      font-size: 12px;
+      color: var(--c-muted);
+      font-weight: 500;
+    }
+
+    .pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--c-red);
+    }
+
+    .pill.yellow .dot {
+      background: var(--c-yellow);
+    }
+
+    /* Vending section */
+    .vending-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      margin-top: var(--space-10);
+    }
+
+    @media (min-width: 768px) {
+      .vending-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+    }
+
+    .vending-card {
+      position: relative;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      border: 1px solid var(--c-border);
+      background: rgba(8, 8, 8, 0.6);
+    }
+
+    .vending-card .img-wrap {
+      aspect-ratio: 16 / 12;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vending-card .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms ease;
+    }
+
+    .vending-card:hover .img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .vending-card .img-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.85) 100%);
+    }
+
+    .vending-card .body {
+      padding: var(--space-5) var(--space-6) var(--space-6);
+    }
+
+    .vending-card .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--c-yellow);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+
+    .vending-card h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: -0.015em;
+      margin: 0 0 var(--space-2);
+    }
+
+    .vending-card p {
+      margin: 0;
+      color: var(--c-muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .channels {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--c-border);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin-top: var(--space-8);
+    }
+
+    @media (min-width: 760px) {
+      .channels {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .channel {
+      background: rgba(8, 8, 8, 0.6);
+      padding: var(--space-6);
+      transition: background 200ms ease;
+    }
+
+    .channel:hover {
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .channel .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--r-sm);
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--c-red-soft);
+      margin-bottom: var(--space-3);
+    }
+
+    .channel .title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .channel .sub {
+      font-size: 13px;
+      color: var(--c-faint);
+      line-height: 1.45;
+    }
+
+    /* Trust grid */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+    }
+
+    @media (min-width: 640px) {
+      .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .trust-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .trust-card {
+      position: relative;
+      padding: var(--space-6);
+      border-radius: var(--r-lg);
+      background: rgba(8, 8, 8, 0.6);
+      border: 1px solid var(--c-border);
+      overflow: hidden;
+      transition: border-color 240ms ease, transform 240ms ease;
+    }
+
+    .trust-card:hover {
+      border-color: rgba(239, 68, 68, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .trust-card .num {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--c-faint);
+      letter-spacing: 0.12em;
+    }
+
+    .trust-card .h {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 18px;
+      margin: var(--space-2) 0 var(--space-3);
+      letter-spacing: -0.01em;
+    }
+
+    .trust-card .b {
+      font-size: 14px;
+      color: var(--c-muted);
+      line-height: 1.55;
+    }
+
+    .trust-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(closest-side, rgba(239, 68, 68, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* CTA / Inquiry */
+    .inquiry .glass-inner {
+      padding: var(--space-12);
+    }
+
+    @media (min-width: 768px) {
+      .inquiry .glass-inner {
+        padding: 64px;
+      }
+    }
+
+    .inquiry-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+      align-items: center;
+    }
+
+    @media (min-width: 980px) {
+      .inquiry-grid {
+        grid-template-columns: 1.1fr 1fr;
+      }
+    }
+
+    .inquiry h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(32px, 4.5vw, 52px);
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin: var(--space-3) 0;
+    }
+
+    .inquiry p {
+      color: var(--c-muted);
+      font-size: 17px;
+      max-width: 56ch;
+    }
+
+    .inquiry-cta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-top: var(--space-8);
+    }
+
+    @media (min-width: 480px) {
+      .inquiry-cta {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+
+    .inquiry-side {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: var(--space-8);
+    }
+
+    .inquiry-side .side-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c-faint);
+    }
+
+    .inquiry-side .side-row {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .inquiry-side .side-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .inquiry-side .side-row:first-child {
+      padding-top: 0;
+    }
+
+    .inquiry-side .side-row .k {
+      color: var(--c-faint);
+      font-size: 12px;
+      min-width: 88px;
+      padding-top: 2px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .inquiry-side .side-row .v {
+      color: var(--c-text);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .inquiry-side .side-row .v a {
+      color: var(--c-yellow);
+    }
+
+    .inquiry-side .side-row .v a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .foot {
+      padding: var(--space-16) 0 var(--space-8);
+      border-top: 1px solid var(--c-border);
+      background: rgba(0, 0, 0, 0.6);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    @media (min-width: 880px) {
+      .foot-grid {
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      }
+    }
+
+    .foot h5 {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--c-faint);
+      margin: 0 0 var(--space-3);
+    }
+
+    .foot ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .foot a {
+      color: var(--c-muted);
+      font-size: 14px;
+      transition: color 150ms ease;
+    }
+
+    .foot a:hover {
+      color: var(--c-text);
+    }
+
+    .foot p {
+      color: var(--c-muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .foot-bottom {
+      margin-top: var(--space-12);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--c-border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-4);
+      color: var(--c-faint);
+      font-size: 12px;
+    }
+
+    /* utility */
+    .hide-sm {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .hide-sm {
+        display: initial;
+      }
+    }
+
+    @media (max-width: 559px) {
+      .brand-sub {
+        display: none;
+      }
+
+      .nav .btn {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 419px) {
+      .nav .btn {
+        display: none;
+      }
+
+      .brand img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .brand-name {
+        font-size: 16px;
+      }
+    }
+
+    /* respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* copy toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%) translateY(20px);
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 12px 18px;
+      border-radius: var(--r-full);
+      background: rgba(10, 10, 10, 0.92);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: rgba(0, 0, 0, 0.5) 0 12px 32px -8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--c-yellow);
+      box-shadow: 0 0 10px var(--c-yellow);
+    }
+
+    /* lightbox / media zoom */
+    .zoomable {
+      cursor: zoom-in;
+      transition: opacity 150ms ease;
+    }
+
+    .zoomable:hover {
+      opacity: 0.92;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0, 0, 0, 0.92);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      touch-action: none;
+      overscroll-behavior: contain;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox .lb-img {
+      max-width: 92vw;
+      max-height: 86vh;
+      object-fit: contain;
+      transform-origin: center center;
+      cursor: grab;
+      -webkit-user-select: none;
+      user-select: none;
+      will-change: transform;
+      transition: transform 80ms linear;
+      filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.6));
+    }
+
+    .lightbox .lb-img.dragging {
+      cursor: grabbing;
+      transition: none;
+    }
+
+    .lb-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--r-full);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--c-border-strong);
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      transition: background 150ms ease, transform 150ms ease;
+    }
+
+    .lb-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-1px);
+    }
+
+    .lb-close {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+    }
+
+    .lb-controls {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: var(--space-2);
+      padding: 6px;
+      border-radius: var(--r-full);
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid var(--c-border);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .lb-hint {
+      position: fixed;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: var(--c-faint);
+      letter-spacing: 0.04em;
+      pointer-events: none;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 559px) {
+      .lb-hint {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- BG dot-matrix layer -->
+  <div class="bg-stage" aria-hidden="true">
+    <canvas id="dotfield"></canvas>
+  </div>
+
+  <!-- Nav -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" aria-label="BRO TOYZz home">
+        <img src="assets/logo.png" alt="BRO TOYZz logo" />
+        <span class="brand-text">
+          <span class="brand-name"><span>BRO</span><span>&nbsp;TOYZz</span></span>
+          <span class="brand-sub">Made in Bharat · Est. 2026</span>
+        </span>
+      </a>
+      <nav class="nav-menu" aria-label="Primary">
+        <a href="#product">Hero Product</a>
+        <a href="#vending">Vending</a>
+        <a href="#trust">Why us</a>
+        <a href="#inquiry">Partner</a>
+      </nav>
+      <a href="#inquiry" class="btn btn-primary">Become a partner</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="hero-eyebrow">
+              <span class="pulse"></span>
+              India's first plush toy vending experience
+            </span>
+            <h1 class="hero-title">
+              Toys that <em>hug your wrist</em>,
+              <br />served <span class="accent-yellow">fresh</span> from a vending machine.
+            </h1>
+            <p class="hero-sub">
+              BRO TOYZz puts BIS-certified plush characters in food courts, QSRs, gyms and malls, so the post-meal "can
+              I have one?" gets a yes in twenty seconds. Hero launch: the Panda Wrist Hugger.
+            </p>
+            <div class="hero-cta">
+              <a href="#product" class="btn btn-primary">Meet the Panda</a>
+              <a href="#inquiry" class="btn btn-ghost">Place a machine</a>
+            </div>
+            <div class="hero-meta">
+              <div class="hero-meta-item">
+                <div class="num">BIS</div>
+                <div class="lbl">ISI Certified</div>
+              </div>
+              <div class="hero-meta-item">
+                <div class="num">100%</div>
+                <div class="lbl">Polyester · Kid-safe</div>
+              </div>
+              <div class="hero-meta-item">
+                <div class="num">₹599</div>
+                <div class="lbl">MRP · Incl. GST</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-panda glass">
+            <span class="ch tl"></span><span class="ch tr"></span>
+            <span class="ch bl"></span><span class="ch br"></span>
+            <div class="glass-inner">
+              <div class="hero-panda-img-wrap">
+                <img src="assets/panda-plush-cutout.png" alt="Panda Wrist Hugger plush toy" loading="eager" />
+              </div>
+              <div class="hero-panda-label">
+                <div>
+                  <div class="lbl-sub">Hero · SKU SAS/PAN/RIS26</div>
+                  <div class="name">Panda Wrist Hugger</div>
+                </div>
+                <div class="price">₹599</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee strip -->
+    <div class="strip" aria-hidden="true">
+      <div class="strip-track">
+        <span class="strip-item">BIS Certified · ISI Marked</span>
+        <span class="strip-item">Made in Bharat</span>
+        <span class="strip-item">100% Polyester · Kid-safe Filling</span>
+        <span class="strip-item">Vending-Ready Packaging</span>
+        <span class="strip-item">24-Pack Master Carton</span>
+        <span class="strip-item">EAN 9108961991694</span>
+        <!-- duplicate for seamless loop -->
+        <span class="strip-item">BIS Certified · ISI Marked</span>
+        <span class="strip-item">Made in Bharat</span>
+        <span class="strip-item">100% Polyester · Kid-safe Filling</span>
+        <span class="strip-item">Vending-Ready Packaging</span>
+        <span class="strip-item">24-Pack Master Carton</span>
+        <span class="strip-item">EAN 9108961991694</span>
+      </div>
+    </div>
+
+    <!-- PRODUCT -->
+    <section class="section" id="product">
+      <div class="container">
+        <span class="section-tag"><span class="dot"></span>Hero Product · Available now</span>
+        <h2 class="section-title">Panda Wrist Hugger.<br />Six inches of <em>squeeze-back</em>.</h2>
+        <p class="section-lede">A 6-inch plush panda that wraps around your wrist via a soft elastic loop. Built for
+          backpacks, bus rides, and hand-luggage. Sized and packaged to drop straight into a vending coil, so every box
+          dispenses cleanly, every time.</p>
+
+        <div class="product-grid" style="margin-top:var(--space-10)">
+          <div class="product-media">
+            <div class="product-image">
+              <span class="badge">BIS · ISI</span>
+              <div class="price-tag">
+                <div class="label">MRP · Incl. of all taxes</div>
+                <div class="value">₹599</div>
+              </div>
+              <img src="assets/panda-plush-cutout.png" alt="Panda Wrist Toy plush product photo" />
+            </div>
+            <div class="gallery">
+              <div class="thumb"><img src="assets/panda-box.jpeg" alt="Panda toy retail box" /></div>
+              <div class="thumb"><img src="assets/panda-diecut.jpeg" alt="Panda toy packaging die-cut" /></div>
+            </div>
+          </div>
+
+          <div class="product-detail">
+            <span class="section-tag"><span class="dot"></span>SAS/PAN/RIS26</span>
+            <h3>Wrist-hugging panda. Kid-safe inside, vend-ready outside.</h3>
+            <p class="desc">
+              Soft black-and-white plush, glossy bead eyes, embroidered detailing. The hidden elastic band lets it cling
+              to a wrist, a bag strap, a bedpost. A loyal little companion that travels everywhere a child does.
+            </p>
+
+            <div class="badges">
+              <span class="pill"><span class="dot"></span>BIS Certified</span>
+              <span class="pill yellow"><span class="dot"></span>Made in Bharat</span>
+              <span class="pill"><span class="dot"></span>100% Polyester</span>
+              <span class="pill yellow"><span class="dot"></span>Single-box vending pack</span>
+            </div>
+
+            <div class="specs">
+              <div class="spec">
+                <div class="k">Size</div>
+                <div class="v">6 Inches</div>
+              </div>
+              <div class="spec">
+                <div class="k">Material</div>
+                <div class="v">100% Polyester</div>
+              </div>
+              <div class="spec">
+                <div class="k">Filling</div>
+                <div class="v">100% Polyester Fiber</div>
+              </div>
+              <div class="spec">
+                <div class="k">Net Qty / Box</div>
+                <div class="v">1 Unit</div>
+              </div>
+              <div class="spec">
+                <div class="k">Master Carton</div>
+                <div class="v">24 Pieces</div>
+              </div>
+              <div class="spec">
+                <div class="k">EAN</div>
+                <div class="v">9108961991694</div>
+              </div>
+              <div class="spec">
+                <div class="k">MRP (incl. tax)</div>
+                <div class="v">₹599</div>
+              </div>
+              <div class="spec">
+                <div class="k">Trade landing</div>
+                <div class="v">₹300 / unit</div>
+              </div>
+            </div>
+
+            <a href="#inquiry" class="btn-link" style="font-weight:500">Request a B2B price sheet</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VENDING -->
+    <section class="section" id="vending">
+      <div class="container">
+        <span class="section-tag"><span class="dot"></span>The placement story</span>
+        <h2 class="section-title">A toy. A tap. Twenty seconds.</h2>
+        <p class="section-lede">We borrow the playbook of snack vending and rewire it for plush. Premium kid-safe toys,
+          dispensed at points of impulse, exactly where families already pause.</p>
+
+        <div class="vending-grid">
+          <div class="vending-card">
+            <div class="img-wrap">
+              <img src="assets/vending-dominos.png"
+                alt="BRO TOYZz vending machine concept inside a Domino's Pizza outlet" />
+            </div>
+            <div class="body">
+              <div class="label">Concept · QSR placement</div>
+              <h4>Where the kids already wait.</h4>
+              <p>Pizza counters, dosa joints, food courts, anywhere a child has 8 minutes between order and tray. Every
+                BRO TOYZz machine is plug-and-play: 100&#8209;240V, 1 sq.m footprint, UPI-first checkout, restock in
+                under 6 minutes.</p>
+            </div>
+          </div>
+
+          <div class="vending-card">
+            <div class="img-wrap">
+              <img src="assets/vending-bonton.jpeg" alt="Reference vending machine in a Bangalore gym" />
+            </div>
+            <div class="body">
+              <div class="label">Live · Bengaluru pilot</div>
+              <h4>Built on a working format.</h4>
+              <p>Reference machine on the Bengaluru circuit, same chassis, same UPI rails, same restock workflow we'll
+                deploy with toys. Operators already know the box; we're swapping the inventory.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="channels">
+          <div class="channel">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M3 12l9-9 9 9" />
+                <path d="M5 10v10h14V10" />
+              </svg>
+            </div>
+            <div class="title">QSR & Food Courts</div>
+            <div class="sub">Domino's, Pizza Hut, mall multi-tenant courts.</div>
+          </div>
+          <div class="channel">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M6 4v16M18 4v16M3 8h18M3 16h18" />
+              </svg>
+            </div>
+            <div class="title">Gyms & Sports Clubs</div>
+            <div class="sub">Kids' classes, parent waiting zones.</div>
+          </div>
+          <div class="channel">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3a9 9 0 010 18M12 3a9 9 0 000 18" />
+              </svg>
+            </div>
+            <div class="title">Airports & Stations</div>
+            <div class="sub">Departure lounges, boarding areas.</div>
+          </div>
+          <div class="channel">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M4 7l8-4 8 4-8 4-8-4z" />
+                <path d="M4 12l8 4 8-4M4 17l8 4 8-4" />
+              </svg>
+            </div>
+            <div class="title">Malls & Cinemas</div>
+            <div class="sub">Pre-show queues, concourse footfall.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="section" id="trust">
+      <div class="container">
+        <span class="section-tag"><span class="dot"></span>What you're buying</span>
+        <h2 class="section-title">Built like the boring stuff matters.</h2>
+        <p class="section-lede">Because it does. Every BRO TOYZz product clears the certification, packaging and
+          supply-chain checks that QSR and mall partners actually audit before they let you on the floor.</p>
+
+        <div class="trust-grid">
+          <div class="trust-card">
+            <div class="num">01 / Certification</div>
+            <div class="h">BIS Certified, ISI Marked</div>
+            <div class="b">Every SKU complies with India's mandatory toy-safety standard. ISI mark printed on box,
+              traceable to batch.</div>
+          </div>
+          <div class="trust-card">
+            <div class="num">02 / Material</div>
+            <div class="h">Kid-safe Polyester</div>
+            <div class="b">100% polyester shell, 100% polyester fiber filling. No loose pellets, no harsh dyes,
+              wash-tested for repeat handling.</div>
+          </div>
+          <div class="trust-card">
+            <div class="num">03 / Origin</div>
+            <div class="h">Made in Bharat</div>
+            <div class="b">Manufactured and packed domestically. GST-compliant invoicing, EAN-coded units, 24-piece
+              master cartons ready for direct dispatch.</div>
+          </div>
+          <div class="trust-card">
+            <div class="num">04 / Logistics</div>
+            <div class="h">Vending-Ready</div>
+            <div class="b">Single-unit boxes sized for standard vending coils. Restock-friendly batch labels. Operator
+              SOPs in English and Hindi.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INQUIRY -->
+    <section class="section" id="inquiry">
+      <div class="container">
+        <div class="inquiry glass">
+          <span class="ch tl"></span><span class="ch tr"></span>
+          <span class="ch bl"></span><span class="ch br"></span>
+          <div class="glass-inner">
+            <div class="inquiry-grid">
+              <div>
+                <span class="section-tag"><span class="dot"></span>Now booking pilot locations</span>
+                <h2>Want a BRO TOYZz machine on your floor?</h2>
+                <p>Whether you run a QSR brand, a multi-mall portfolio, a gym chain, or a single high-traffic kiosk,
+                  drop us a line. We handle install, restock, and rev-share. You get a happy kid every twenty seconds.
+                </p>
+                <div class="inquiry-cta">
+                  <a class="btn btn-primary"
+                    href="mailto:info@aerom.co.in?subject=BRO%20TOYZz%20Placement%20Inquiry&body=Hi%20BRO%20TOYZz%20team%2C%0A%0AI%20run%20___%20and%20I%27d%20like%20to%20discuss%20placing%20a%20vending%20machine%20at%20___%20.%20Footfall%20approx%20___%2Fday.%20Best%20number%20to%20reach%20me%3A%20___.%0A%0AThanks%2C">Email
+                    placement team →</a>
+                  <a class="btn btn-ghost"
+                    href="mailto:info@aerom.co.in?subject=BRO%20TOYZz%20Distributor%20Inquiry">Become a distributor</a>
+                </div>
+              </div>
+              <div class="inquiry-side">
+                <div class="side-label" style="margin-bottom:var(--space-4)">Direct line</div>
+                <div class="side-row">
+                  <div class="k">Email</div>
+                  <div class="v"><a href="mailto:info@aerom.co.in">info@aerom.co.in</a></div>
+                </div>
+                <div class="side-row">
+                  <div class="k">Marketed by</div>
+                  <div class="v">Salahar Sanman PVT LTD DPC</div>
+                </div>
+                <div class="side-row">
+                  <div class="k">HQ</div>
+                  <div class="v">Bengaluru, Karnataka, India</div>
+                </div>
+                <div class="side-row">
+                  <div class="k">Hero SKU</div>
+                  <div class="v">SAS/PAN/RIS26 · Panda Wrist Toy</div>
+                </div>
+                <div class="side-row">
+                  <div class="k">EAN</div>
+                  <div class="v">9108961991694</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <a href="#top" class="brand" style="margin-bottom:var(--space-4)">
+            <img src="assets/logo.png" alt="" style="width:48px;height:48px" />
+            <span class="brand-text">
+              <span class="brand-name"><span>BRO</span><span>&nbsp;TOYZz</span></span>
+              <span class="brand-sub">India's plush vending experience</span>
+            </span>
+          </a>
+          <p style="margin-top:var(--space-4); max-width: 38ch;">
+            Premium, BIS-certified plush toys distributed through India's first dedicated toy vending network. A Salahar
+            Sanman company.
+          </p>
+        </div>
+        <div>
+          <h5>Explore</h5>
+          <ul>
+            <li><a href="#product">Hero product</a></li>
+            <li><a href="#vending">Vending model</a></li>
+            <li><a href="#trust">Why BRO TOYZz</a></li>
+            <li><a href="#inquiry">Partner with us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:info@aerom.co.in">info@aerom.co.in</a></li>
+            <li><a href="mailto:info@aerom.co.in?subject=Placement">Placement inquiries</a></li>
+            <li><a href="mailto:info@aerom.co.in?subject=Distribution">Distributor program</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li>Salahar Sanman PVT LTD DPC</li>
+            <li>Bengaluru, Karnataka 560001</li>
+            <li>Made in Bharat · BIS Certified</li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Salahar Sanman PVT LTD DPC. All rights reserved.</span>
+        <span>BRO TOYZz™ · Hero SKU SAS/PAN/RIS26 · EAN 9108961991694</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Background dot-matrix renderer -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('dotfield');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d', { alpha: true });
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let W = 0, H = 0, dpr = 1;
+      const mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
+      let t0 = performance.now();
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+        W = window.innerWidth;
+        H = window.innerHeight;
+        canvas.width = Math.floor(W * dpr);
+        canvas.height = Math.floor(H * dpr);
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+
+      window.addEventListener('pointermove', (e) => {
+        mouse.tx = e.clientX / W;
+        mouse.ty = e.clientY / H;
+      }, { passive: true });
+
+      function hash(x, y) {
+        let h = x * 374761393 + y * 668265263;
+        h = (h ^ (h >> 13)) * 1274126177;
+        return ((h ^ (h >> 16)) >>> 0) / 4294967296;
+      }
+
+      function frame(now) {
+        const t = (now - t0) * 0.001;
+        mouse.x += (mouse.tx - mouse.x) * 0.04;
+        mouse.y += (mouse.ty - mouse.y) * 0.04;
+
+        ctx.clearRect(0, 0, W, H);
+
+        const breathe = 0.5 + 0.5 * Math.sin(t * 0.45);
+        const parX = (mouse.x - 0.5) * 18;
+        const parY = (mouse.y - 0.5) * 18;
+
+        const step = 16;
+        const cols = Math.ceil(W / step) + 2;
+        const rows = Math.ceil(H / step) + 2;
+
+        for (let j = 0; j < rows; j++) {
+          for (let i = 0; i < cols; i++) {
+            const gx = i * step + parX;
+            const gy = j * step + parY;
+
+            const dx = (gx / W) - mouse.x;
+            const dy = (gy / H) - mouse.y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            const cursorBoost = Math.max(0, 0.5 - d) * 1.2;
+
+            const n =
+              0.5 + 0.5 * Math.sin(i * 0.18 + t * 0.6) *
+              Math.cos(j * 0.22 - t * 0.4) *
+              Math.sin((i + j) * 0.05 + t * 0.2);
+
+            const r = hash(i, j);
+
+            const v = n * (0.62 + breathe * 0.36) + cursorBoost * 0.4 + r * 0.06;
+            if (v < 0.4) continue;
+
+            const a = Math.min(1.0, (v - 0.4) * 2.1);
+            const radius = 1.05 + (v - 0.4) * 2.3;
+
+            const redMix = cursorBoost * 1.0 + breathe * 0.2;
+            const cR = Math.floor(238 + 17 * redMix);
+            const cG = Math.floor(238 - 120 * redMix);
+            const cB = Math.floor(238 - 140 * redMix);
+
+            ctx.fillStyle = `rgba(${cR},${cG},${cB},${a})`;
+            ctx.beginPath();
+            ctx.arc(gx, gy, radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        if (!reduce) raf = requestAnimationFrame(frame);
+      }
+
+      let raf;
+      if (reduce) {
+        frame(performance.now());
+      } else {
+        raf = requestAnimationFrame(frame);
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          cancelAnimationFrame(raf);
+        } else if (!reduce) {
+          t0 = performance.now();
+          raf = requestAnimationFrame(frame);
+        }
+      });
+    })();
+  </script>
+
+  <!-- copy toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="dot"></span><span id="toast-msg">Email copied</span>
+  </div>
+
+  <!-- mailto click-to-copy fallback -->
+  <script>
+    (function () {
+      const EMAIL = 'info@aerom.co.in';
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toast-msg');
+      let timer;
+      function showToast(text) {
+        if (!toast) return;
+        msg.textContent = text;
+        toast.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(() => toast.classList.remove('show'), 2600);
+      }
+      function copySync(text) {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.top = '-1000px';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          ta.setSelectionRange(0, text.length);
+          const ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          return ok;
+        } catch (e) { return false; }
+      }
+      document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
+        a.addEventListener('click', () => {
+          const ok = copySync(EMAIL);
+          if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(EMAIL).catch(() => { });
+          }
+          showToast(ok ? ('Email copied · ' + EMAIL) : EMAIL);
+        });
+      });
+    })();
+  </script>
+
+  <!-- media lightbox: click any image for fullscreen zoom + pan -->
+  <script>
+    (function () {
+      const sel = '.hero-panda-img-wrap img, .product-image > img, .product-media .thumb img, .vending-card .img-wrap img';
+      const imgs = document.querySelectorAll(sel);
+      if (!imgs.length) return;
+
+      const lb = document.createElement('div');
+      lb.className = 'lightbox';
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-modal', 'true');
+      lb.innerHTML =
+        '<div class="lb-hint">Scroll or pinch to zoom \u00b7 drag to pan \u00b7 Esc to close</div>' +
+        '<img class="lb-img" alt="" draggable="false" />' +
+        '<button class="lb-btn lb-close" aria-label="Close">\u00d7</button>' +
+        '<div class="lb-controls">' +
+        '<button class="lb-btn" data-a="out" aria-label="Zoom out">\u2212</button>' +
+        '<button class="lb-btn" data-a="reset" aria-label="Reset zoom">\u21ba</button>' +
+        '<button class="lb-btn" data-a="in" aria-label="Zoom in">+</button>' +
+        '</div>';
+      document.body.appendChild(lb);
+
+      const img = lb.querySelector('.lb-img');
+      let scale = 1, tx = 0, ty = 0;
+      const MIN = 1, MAX = 6;
+      const pointers = new Map();
+      let pinchDist = 0, drag = false, sx = 0, sy = 0;
+
+      function apply() { img.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')'; }
+      function reset() { scale = 1; tx = 0; ty = 0; apply(); }
+      function open(src, alt) { img.src = src; img.alt = alt || ''; reset(); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+      function close() { lb.classList.remove('open'); document.body.style.overflow = ''; img.removeAttribute('src'); }
+      function clampScale(s) { return Math.min(MAX, Math.max(MIN, s)); }
+      function zoom(f) { scale = clampScale(scale * f); if (scale === 1) { tx = 0; ty = 0; } apply(); }
+
+      imgs.forEach(function (im) {
+        im.classList.add('zoomable');
+        im.addEventListener('click', function () { open(im.currentSrc || im.src, im.alt); });
+      });
+
+      lb.querySelector('.lb-close').addEventListener('click', close);
+      lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+      lb.querySelectorAll('.lb-controls .lb-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const a = btn.dataset.a;
+          if (a === 'in') zoom(1.3);
+          else if (a === 'out') zoom(1 / 1.3);
+          else reset();
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === '+' || e.key === '=') zoom(1.3);
+        else if (e.key === '-' || e.key === '_') zoom(1 / 1.3);
+        else if (e.key === '0') reset();
+      });
+      lb.addEventListener('wheel', function (e) {
+        if (!lb.classList.contains('open')) return;
+        e.preventDefault();
+        zoom(e.deltaY < 0 ? 1.12 : 1 / 1.12);
+      }, { passive: false });
+      img.addEventListener('dblclick', function (e) {
+        e.preventDefault();
+        if (scale > 1) reset(); else { scale = 2.5; apply(); }
+      });
+
+      img.addEventListener('pointerdown', function (e) {
+        pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        img.setPointerCapture(e.pointerId);
+        if (pointers.size === 1 && scale > 1) {
+          drag = true; img.classList.add('dragging');
+          sx = e.clientX - tx; sy = e.clientY - ty;
+        } else if (pointers.size === 2) {
+          drag = false;
+          const p = Array.from(pointers.values());
+          pinchDist = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+        }
+      });
+      img.addEventListener('pointermove', function (e) {
+        if (!pointers.has(e.pointerId)) return;
+        pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        if (pointers.size === 2) {
+          const p = Array.from(pointers.values());
+          const d = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+          if (pinchDist > 0) zoom(d / pinchDist);
+          pinchDist = d;
+        } else if (drag) {
+          tx = e.clientX - sx; ty = e.clientY - sy; apply();
+        }
+      });
+      function release(e) {
+        pointers.delete(e.pointerId);
+        if (pointers.size < 2) pinchDist = 0;
+        if (pointers.size === 0) { drag = false; img.classList.remove('dragging'); }
+      }
+      img.addEventListener('pointerup', release);
+      img.addEventListener('pointercancel', release);
+    })();
+  </script>
+</body>
+
+</html>

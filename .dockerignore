@@ -1,0 +1,10 @@
+README.md
+*.md
+.git
+.gitignore
+.DS_Store
+node_modules
+.env
+.env.*
+*.log
+docker-compose.override.yml
